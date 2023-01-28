@@ -85,3 +85,66 @@ ALTER TABLE "backers" ADD CONSTRAINT "fk_backers_cf_id" FOREIGN KEY("cf_id")
 REFERENCES "campaign" ("cf_id");
 
 SELECT * FROM backers
+
+
+-- Challenge - Deliverable 4: SQL Analysis, Step 2
+-- Join Campaign and Backer,live events
+SELECT c.cf_id,
+    c.outcome,
+	b.backer_id
+INTO backer_campaigns
+FROM campaign as c
+LEFT JOIN backers as b
+ON c.cf_id = b.cf_id
+WHERE c.outcome = ('live')
+
+SELECT * FROM backer_campaigns
+
+
+-- Count Backers per campaign based on join
+SELECT COUNT(bc.backer_id), bc.cf_id
+INTO backer_campain_count
+FROM backer_campaigns as bc
+GROUP BY bc.cf_id
+ORDER BY bc.count DESC;
+
+SELECT * FROM backer_campain_count
+
+
+
+-- Challenge - Deliverable 4: SQL Analysis, Step 3
+-- Validate assumption using backers table - Total match
+SELECT COUNT(b.backer_id), b.cf_id
+INTO backer_count_backers
+FROM backers as b
+GROUP BY b.cf_id
+ORDER BY b.count DESC;
+
+SELECT * FROM backer_count_backers
+
+--Challenge - Deliverable 4: SQL Analysis, Step 4
+-- New table with first_name, last_name, email and remaining goal amount
+-- in descending order for each live campaign
+SELECT c.goal,
+	c.pledged,
+	ct.first_name,
+	ct.last_name,
+	ct.email
+INTO goal_remaining
+FROM campaign as c
+INNER JOIN contacts as ct
+ON c.contact_id = ct.contact_id
+WHERE c.outcome = ('live')
+
+SELECT * FROM goal_remaining
+
+-- Get delta of goal outstanding
+SELECT gr.first_name,
+	gr.last_name,
+	gr.email,
+	(gr.goal - gr.pledged) AS goal_remaining
+INTO email_contacts_remaining_goal
+FROM goal_remaining as gr
+ORDER BY goal_remaining DESC;
+
+SELECT * FROM email_contacts_remaining_goal
