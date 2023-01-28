@@ -1,4 +1,18 @@
 # Crowdfunding-ET
+
+
+## Note from Kobert
+
+
+TA - Kobert
+  9:42 PM
+@here In doing Challenge #8 Deliverable #4 1st question, you may wonder where to find the campaign information.
+In fact, the  campaign information comes from the campaign.csv file in module 8.5.1.  What you need to do is to load this csv file into the database table campaign.  Then you will have all the information to finish the rest of the assignment. (edited) 
+
+
+
+
+
 Module 8 - ETL
 Independent Funding is a crowdfunding platform for funding independent projects or ventures.
 
