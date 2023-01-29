@@ -1,4 +1,4 @@
-﻿-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
+-- Exported from QuickDBD: https://www.quickdatabasediagrams.com/
 -- Link to schema: https://app.quickdatabasediagrams.com/#/d/dlKkBe
 -- NOTE! If you have used non-SQL datatypes in your design, you will have to change these here.
 
@@ -87,7 +87,8 @@ REFERENCES "campaign" ("cf_id");
 SELECT * FROM backers
 
 
--- Challenge - Deliverable 4: SQL Analysis, Step 2
+-- Challenge 
+-- Deliverable 4: SQL Analysis, Step 2
 -- Join Campaign and Backer,live events
 SELECT c.cf_id,
     c.outcome,
@@ -148,3 +149,24 @@ FROM goal_remaining as gr
 ORDER BY goal_remaining DESC;
 
 SELECT * FROM email_contacts_remaining_goal
+
+
+--Challenge - Deliverable 4: SQL Analysis, Step 5
+-- New table with backer emails DESC, first_name, last_name, cf_ID, company name
+-- description, end_date of the campaign and remaining amount from goal.
+SELECT b.email,
+	b.first_name,
+	b.last_name,
+	b.cf_id,
+	c.company_name,
+	c.description,
+	c.end_date,
+	(c.goal - c.pledged) AS "Left of Goal"
+INTO email_backers_remaining_goal_amount
+FROM backers as b
+INNER JOIN campaign as c
+ON b.cf_id = c.cf_id
+ORDER BY email DESC;
+
+SELECT * FROM email_backers_remaining_goal_amount
+
