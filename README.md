@@ -28,4 +28,4 @@ Also included were the final tables resulting from our SQL queries - [Link to Qu
 
 As well as the actual tables of results to be provided to our stakeholders.
 * email_contacts_remaining_goal_amount - [Link-contacts csv](https://github.com/SusanFair/Crowdfunding-ETL/blob/main/email_contacts_remaining_goal_amount.csv)
-* email_backers_remaining_goal_amoung - [Link - backers csv](https://github.com/SusanFair/Crowdfunding-ETL/blob/main/email_backers_remaining_goal_amount.csv)
+* email_backers_remaining_goal_amoung - [Link-backers csv](https://github.com/SusanFair/Crowdfunding-ETL/blob/main/email_backers_remaining_goal_amount.csv)
