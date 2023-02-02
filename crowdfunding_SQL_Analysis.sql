@@ -60,10 +60,10 @@ SELECT * FROM goal_remaining
 SELECT gr.first_name,
 	gr.last_name,
 	gr.email,
-	(gr.goal - gr.pledged) AS goal_remaining
+	(gr.goal - gr.pledged) AS "Remaining Goal Amount
 INTO email_contacts_remaining_goal
 FROM goal_remaining as gr
-ORDER BY goal_remaining DESC;
+ORDER BY "Remaining Goal Amountg DESC;
 
 -- Check the table
 SELECT * FROM email_contacts_remaining_goal
@@ -73,7 +73,7 @@ SELECT * FROM email_contacts_remaining_goal
 -- Create a table, "email_backers_remaining_goal_amount" that contains the email address of each backer in descending order, 
 -- and has the first and last name of each backer, the cf_id, company name, description, 
 -- end date of the campaign, and the remaining amount of the campaign goal as "Left of Goal". 
-
+-- Note this is the query as per the written description in the challenge
 SELECT b.email,
 	b.first_name,
 	b.last_name,
@@ -91,3 +91,21 @@ ORDER BY email DESC;
 -- Check the table
 SELECT * FROM email_backers_remaining_goal_amount
 
+-- 4. (5 pts)
+-- Note this is the query as per example given in the challenge
+SELECT b.email,
+	b.first_name,
+	b.last_name,
+	b.cf_id,
+	c.company_name,
+	c.description,
+	c.end_date,
+	(c.goal - c.pledged) AS "Left of Goal"
+INTO email_backers_remaining_goal_amount
+FROM backers as b
+INNER JOIN campaign as c
+ON b.cf_id = c.cf_id
+ORDER BY last_name;
+
+-- Check the table
+SELECT * FROM email_backers_remaining_goal_amount
